@@ -8,59 +8,73 @@
 </head>
 <body>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-
+  <!-- TOP NAV (mobile only) -->
+  <nav class="top-nav">
     <div class="logo">
       <span class="logo-icon">⚡</span>
       <span class="logo-text">PocketMind</span>
     </div>
+    <button class="hamburger" id="hamburgerBtn">☰</button>
+  </nav>
 
-    <p class="tagline">Your AI study buddy for engineering exams</p>
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay"></div>
 
-    <div class="upload-section">
-      <p class="section-label">Upload Notes / QB</p>
-      <label class="upload-btn" for="fileInput">📄 Choose PDF</label>
-      <input type="file" id="fileInput" accept=".pdf" hidden />
-      <div id="fileStatus" class="file-status">No file uploaded</div>
-    </div>
+  <div class="main-layout">
 
-    <div class="sidebar-footer">
-      <button id="clearBtn" class="clear-btn">🗑 Clear Chat</button>
-    </div>
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">PocketMind</span>
+      </div>
 
-  </aside>
+      <p class="tagline">Your AI study buddy for engineering exams</p>
 
-  <!-- MAIN CHAT AREA -->
-  <main class="chat-container">
+      <div class="upload-section">
+        <p class="section-label">Upload Notes / QB</p>
+        <label class="upload-btn" for="fileInput">📄 Choose PDF</label>
+        <input type="file" id="fileInput" accept=".pdf" hidden />
+        <div id="fileStatus" class="file-status">No file uploaded</div>
+      </div>
 
-    <div class="chat-header">
-      <span id="headerStatus">Ask me anything — or upload your notes first</span>
-    </div>
+      <div class="sidebar-footer">
+        <button id="clearBtn" class="clear-btn">🗑 Clear Chat</button>
+      </div>
+    </aside>
 
-    <div class="chat-messages" id="chatMessages">
-      <div class="message ai-message">
-        <div class="bubble">
-          👋 Hi! I'm <strong>PocketMind</strong>.<br/><br/>
-          Upload your notes or question bank PDF on the left, then ask me anything.
-          I'll answer based on <em>your</em> content. No notes? I can still help with general engineering topics!
+    <!-- MAIN CHAT AREA -->
+    <main class="chat-container">
+
+      <div class="chat-header">
+        <span id="headerStatus">Ask me anything — or upload your notes first</span>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="message ai-message">
+          <div class="bubble">
+            👋 Hi! I'm <strong>PocketMind</strong>.<br/><br/>
+            Upload your notes or question bank PDF on the left, then ask me anything.
+            I'll answer based on <em>your</em> content. No notes? I can still help with general engineering topics!
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="chat-input-area">
-      <textarea
-        id="userInput"
-        placeholder="Ask a question about your notes..."
-        rows="1"
-      ></textarea>
-      <button id="sendBtn">Send ↑</button>
-    </div>
+      <div class="chat-input-area">
+        <textarea
+          id="userInput"
+          placeholder="Ask a question about your notes..."
+          rows="1"
+        ></textarea>
+        <button id="sendBtn">Send ↑</button>
+      </div>
 
-  </main>
+    </main>
+
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-<script src="app.js"></script>
+  <script src="app.js"></script>
 
 </body>
 </html>

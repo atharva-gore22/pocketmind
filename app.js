@@ -1,9 +1,8 @@
 // ============================================================
-// POCKETMIND - app.js (Groq API)
+// POCKETMIND - app.js (Cloudflare Worker Backend)
 // ============================================================
 
-const API_KEY = "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";
-const API_URL = "https://api.groq.com/openai/v1/chat/completions";
+const WORKER_URL = "https://pocketmind-backend.atharvagore229.workers.dev";
 
 let notesContext = "";
 let conversationHistory = [];
@@ -95,7 +94,7 @@ async function handleSend() {
   const typingId = addTypingIndicator();
 
   try {
-    const reply = await sendToGroq(message);
+    const reply = await sendToWorker(message);
     removeTypingIndicator(typingId);
     addMessage("ai", reply);
   } catch (err) {
@@ -108,8 +107,8 @@ async function handleSend() {
   userInput.focus();
 }
 
-// ── Groq API Call ─────────────────────────────────────────
-async function sendToGroq(userMessage) {
+// ── Cloudflare Worker API Call ────────────────────────────
+async function sendToWorker(userMessage) {
 
   const systemText = `You are PocketMind, a smart AI study assistant built specifically for engineering students in India.
 Your job is to help students understand their notes, prepare for exams, and clear their doubts quickly.
@@ -129,25 +128,17 @@ ${notesContext
     })),
   ];
 
-  const payload = {
-    model: "llama-3.3-70b-versatile",
-    messages: messages,
-    temperature: 0.7,
-    max_tokens: 1024,
-  };
-
-  const response = await fetch(API_URL, {
+  const response = await fetch(WORKER_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + API_KEY,
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({ messages }),
   });
 
   if (!response.ok) {
     const errData = await response.json();
-    throw new Error(errData.error?.message || "API request failed");
+    throw new Error(errData.error?.message || "Worker request failed");
   }
 
   const data = await response.json();
@@ -210,4 +201,19 @@ clearBtn.addEventListener("click", () => {
       </div>
     </div>`;
   conversationHistory = [];
+});
+
+// ── Mobile Sidebar Toggle ─────────────────────────────────
+const hamburgerBtn = document.getElementById("hamburgerBtn");
+const sidebar      = document.getElementById("sidebar");
+const overlay      = document.getElementById("overlay");
+
+hamburgerBtn?.addEventListener("click", () => {
+  sidebar.classList.toggle("open");
+  overlay.classList.toggle("active");
+});
+
+overlay.addEventListener("click", () => {
+  sidebar.classList.remove("open");
+  overlay.classList.remove("active");
 });
