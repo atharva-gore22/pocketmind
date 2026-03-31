@@ -2,7 +2,7 @@
 // POCKETMIND - app.js (Cloudflare Worker Backend)
 // ============================================================
 
-const WORKER_URL = "https://pocketmind-backend.atharvagore229.workers.dev";
+const API_URL = "https://pocketmind-backend.atharvagore229.workers.dev";
 
 let notesContext = "";
 let conversationHistory = [];
@@ -107,7 +107,7 @@ async function handleSend() {
   userInput.focus();
 }
 
-// ── Cloudflare Worker API Call ────────────────────────────
+// ── Worker API Call ───────────────────────────────────────
 async function sendToWorker(userMessage) {
 
   const systemText = `You are PocketMind, a smart AI study assistant built specifically for engineering students in India.
@@ -128,17 +128,24 @@ ${notesContext
     })),
   ];
 
-  const response = await fetch(WORKER_URL, {
+  const payload = {
+    model: "llama-3.3-70b-versatile",
+    messages: messages,
+    temperature: 0.7,
+    max_tokens: 1024,
+  };
+
+  const response = await fetch(API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ messages }),
+    body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
     const errData = await response.json();
-    throw new Error(errData.error?.message || "Worker request failed");
+    throw new Error(errData.error?.message || "Request failed");
   }
 
   const data = await response.json();
