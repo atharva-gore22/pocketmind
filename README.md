@@ -163,4 +163,4 @@ MIT License — free to use, modify, and build on.
 
 ---
 
-*Built in one day. Shipped to production. ⚡*
+
