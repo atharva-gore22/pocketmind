@@ -2,7 +2,7 @@
 // POCKETMIND - app.js (Groq API)
 // ============================================================
 
-const API_KEY = "YOUR_GROQ_API_KEY";
+const API_KEY = "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";
 const API_URL = "https://api.groq.com/openai/v1/chat/completions";
 
 let notesContext = "";
