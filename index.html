@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PocketMind</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="logo">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">PocketMind</span>
+    </div>
+
+    <p class="tagline">Your AI study buddy for engineering exams</p>
+
+    <div class="upload-section">
+      <p class="section-label">Upload Notes / QB</p>
+      <label class="upload-btn" for="fileInput">📄 Choose PDF</label>
+      <input type="file" id="fileInput" accept=".pdf" hidden />
+      <div id="fileStatus" class="file-status">No file uploaded</div>
+    </div>
+
+    <div class="sidebar-footer">
+      <button id="clearBtn" class="clear-btn">🗑 Clear Chat</button>
+    </div>
+
+  </aside>
+
+  <!-- MAIN CHAT AREA -->
+  <main class="chat-container">
+
+    <div class="chat-header">
+      <span id="headerStatus">Ask me anything — or upload your notes first</span>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <div class="message ai-message">
+        <div class="bubble">
+          👋 Hi! I'm <strong>PocketMind</strong>.<br/><br/>
+          Upload your notes or question bank PDF on the left, then ask me anything.
+          I'll answer based on <em>your</em> content. No notes? I can still help with general engineering topics!
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input-area">
+      <textarea
+        id="userInput"
+        placeholder="Ask a question about your notes..."
+        rows="1"
+      ></textarea>
+      <button id="sendBtn">Send ↑</button>
+    </div>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
