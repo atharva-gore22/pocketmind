@@ -153,7 +153,7 @@ The secret key is stored in Cloudflare's environment — not in any file you can
 
 **Atharva Gore**
 First Year Engineering Student — PVGCOETM, Pune
-[GitHub](https://github.com/atharva-gore22) · [LinkedIn](https://linkedin.com/in/atharva-gore)
+[GitHub](https://github.com/atharva-gore22) · [LinkedIn](https://linkedin.com/in/atharvagore22)
 
 ---
 
